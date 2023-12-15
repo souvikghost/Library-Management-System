@@ -1,0 +1,135 @@
+﻿@*@model Library.Models.Librarian
+
+    @{
+        ViewBag.Title = "Delete";
+    }
+
+    <h2>Delete</h2>
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Librarian</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Librarian_Id)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Librarian_Id)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Librarian_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Librarian_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.User_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.User_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>*@
+
+
+@*-------------------------------------------------------------------------*@
+
+
+
+@model Library.Models.books
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+@*<h2>Delete Book</h2>*@
+
+<h3><b>Are you sure you want to delete this Book ??</b></h3>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-2">
+        <label class="label-success">@ViewBag.SuccessMessage</label>
+    </div>
+</div>
+<div>
+    @*<h4> Delete book</h4>*@
+    <hr />
+    <dl class="dl-horizontal table-bordered">
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Available)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Available)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_Image)
+            
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Book_Image)*@
+            <img src="~/Images/@Model.Book_Image" @*class="img-circle"*@ alt="no img" width="100" height="70" />
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("<---- Back", "Index")
+        </div>
+    }
+</div>
+

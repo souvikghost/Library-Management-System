@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GHOSHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="Book_Id" />
+          </Key>
+          <Property Name="Book_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Book_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Author_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Available" Type="int" Nullable="false" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="Book_Image" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="BorrowBook">
+          <Key>
+            <PropertyRef Name="BorrowBook_Id" />
+          </Key>
+          <Property Name="BorrowBook_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Student_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Book_Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Transaction_Date" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Book_Id" Type="int" />
+          <Property Name="Student_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Librarian">
+          <Key>
+            <PropertyRef Name="Librarian_Id" />
+          </Key>
+          <Property Name="Librarian_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Librarian_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Student_Id" />
+          </Key>
+          <Property Name="Student_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Student_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email_Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Course" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Semester" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BorrowBoo__Book___4F47C5E3">
+          <End Role="books" Type="Self.books" Multiplicity="0..1" />
+          <End Role="BorrowBook" Type="Self.BorrowBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="Book_Id" />
+            </Principal>
+            <Dependent Role="BorrowBook">
+              <PropertyRef Name="Book_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BorrowBoo__Stude__503BEA1C">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="BorrowBook" Type="Self.BorrowBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Student_Id" />
+            </Principal>
+            <Dependent Role="BorrowBook">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GHOSHModelStoreContainer">
+          <EntitySet Name="books" EntityType="Self.books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BorrowBook" EntityType="Self.BorrowBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Librarian" EntityType="Self.Librarian" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BorrowBoo__Book___4F47C5E3" Association="Self.FK__BorrowBoo__Book___4F47C5E3">
+            <End Role="books" EntitySet="books" />
+            <End Role="BorrowBook" EntitySet="BorrowBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BorrowBoo__Stude__503BEA1C" Association="Self.FK__BorrowBoo__Stude__503BEA1C">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="BorrowBook" EntitySet="BorrowBook" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GHOSHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GHOSHEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="books" EntityType="GHOSHModel.books" />
+          <EntitySet Name="Student" EntityType="GHOSHModel.Student" />
+          <EntitySet Name="Librarian" EntityType="GHOSHModel.Librarian" />
+          <EntitySet Name="BorrowBook" EntityType="GHOSHModel.BorrowBook" />
+          <AssociationSet Name="FK__BorrowBoo__Book___4F47C5E3" Association="GHOSHModel.FK__BorrowBoo__Book___4F47C5E3">
+            <End Role="books" EntitySet="books" />
+            <End Role="BorrowBook" EntitySet="BorrowBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BorrowBoo__Stude__503BEA1C" Association="GHOSHModel.FK__BorrowBoo__Stude__503BEA1C">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="BorrowBook" EntitySet="BorrowBook" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="Book_Id" />
+          </Key>
+          <Property Name="Book_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Author_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Available" Type="Int32" Nullable="false" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <Property Name="Book_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BorrowBook" Relationship="GHOSHModel.FK__BorrowBoo__Book___4F47C5E3" FromRole="books" ToRole="BorrowBook" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Student_Id" />
+          </Key>
+          <Property Name="Student_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Student_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Course" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BorrowBook" Relationship="GHOSHModel.FK__BorrowBoo__Stude__503BEA1C" FromRole="Student" ToRole="BorrowBook" />
+        </EntityType>
+        <EntityType Name="Librarian">
+          <Key>
+            <PropertyRef Name="Librarian_Id" />
+          </Key>
+          <Property Name="Librarian_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Librarian_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BorrowBook">
+          <Key>
+            <PropertyRef Name="BorrowBook_Id" />
+          </Key>
+          <Property Name="BorrowBook_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Student_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Book_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Transaction_Date" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Book_Id" Type="Int32" />
+          <Property Name="Student_Id" Type="Int32" />
+          <NavigationProperty Name="books" Relationship="GHOSHModel.FK__BorrowBoo__Book___4F47C5E3" FromRole="BorrowBook" ToRole="books" />
+          <NavigationProperty Name="Student" Relationship="GHOSHModel.FK__BorrowBoo__Stude__503BEA1C" FromRole="BorrowBook" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK__BorrowBoo__Book___4F47C5E3">
+          <End Type="GHOSHModel.books" Role="books" Multiplicity="0..1" />
+          <End Type="GHOSHModel.BorrowBook" Role="BorrowBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="Book_Id" />
+            </Principal>
+            <Dependent Role="BorrowBook">
+              <PropertyRef Name="Book_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BorrowBoo__Stude__503BEA1C">
+          <End Type="GHOSHModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="GHOSHModel.BorrowBook" Role="BorrowBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Student_Id" />
+            </Principal>
+            <Dependent Role="BorrowBook">
+              <PropertyRef Name="Student_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GHOSHModelStoreContainer" CdmEntityContainer="GHOSHEntities">
+          <EntitySetMapping Name="books">
+            <EntityTypeMapping TypeName="GHOSHModel.books">
+              <MappingFragment StoreEntitySet="books">
+                <ScalarProperty Name="Book_Image" ColumnName="Book_Image" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Author_Name" ColumnName="Author_Name" />
+                <ScalarProperty Name="Book_Name" ColumnName="Book_Name" />
+                <ScalarProperty Name="Book_Id" ColumnName="Book_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="GHOSHModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
+                <ScalarProperty Name="Student_Name" ColumnName="Student_Name" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Student_Id" ColumnName="Student_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Librarian">
+            <EntityTypeMapping TypeName="GHOSHModel.Librarian">
+              <MappingFragment StoreEntitySet="Librarian">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Librarian_Name" ColumnName="Librarian_Name" />
+                <ScalarProperty Name="Librarian_Id" ColumnName="Librarian_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BorrowBook">
+            <EntityTypeMapping TypeName="GHOSHModel.BorrowBook">
+              <MappingFragment StoreEntitySet="BorrowBook">
+                <ScalarProperty Name="Student_Id" ColumnName="Student_Id" />
+                <ScalarProperty Name="Book_Id" ColumnName="Book_Id" />
+                <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+                <ScalarProperty Name="Book_Name" ColumnName="Book_Name" />
+                <ScalarProperty Name="Student_Name" ColumnName="Student_Name" />
+                <ScalarProperty Name="BorrowBook_Id" ColumnName="BorrowBook_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

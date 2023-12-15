@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5ab57d7544674083b4a4979a15d8a935" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="GHOSHModel.books" Width="1.5" PointX="0.625" PointY="0.5" />
+        <EntityTypeShape EntityType="GHOSHModel.Student" Width="1.5" PointX="2.5" PointY="1.75" />
+        <EntityTypeShape EntityType="GHOSHModel.Librarian" Width="1.5" PointX="4.75" PointY="1" />
+        <EntityTypeShape EntityType="GHOSHModel.BorrowBook" Width="1.5" PointX="7.375" PointY="1.375" />
+        <AssociationConnector Association="GHOSHModel.FK__BorrowBoo__Book___4F47C5E3" />
+        <AssociationConnector Association="GHOSHModel.FK__BorrowBoo__Stude__503BEA1C" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
